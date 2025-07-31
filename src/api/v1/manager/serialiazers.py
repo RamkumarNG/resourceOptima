@@ -14,7 +14,7 @@ class ManagerSerializer(serializers.ModelSerializer):
         return list(obj.resources.values_list('name', flat=True))
     
     def get_projects(self, obj):
-        return list(obj.projects.values_list('projects', flat=True))
+        return list(obj.projects.values_list('name', flat=True))
     
     class Meta:
         model = Manager
