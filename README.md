@@ -63,18 +63,6 @@
 docker-compose up --build
 ````
 
-### 3️⃣ Apply Migrations & Seed Data
-
-In a new terminal:
-
-```bash
-docker exec -it <web_container_name> bash
-
-# Inside container
-python manage.py migrate
-python manage.py initapp        # Custom command to initialize core setup
-python manage.py createsuperuser
-```
 
 ### 4️⃣ API Access
 
