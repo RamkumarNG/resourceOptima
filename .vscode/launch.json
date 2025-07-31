@@ -1,0 +1,32 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Django Attachs",
+      "type": "python",
+      "request": "attach",
+      "connect": {
+        "host": "localhost",
+        "port": 5680
+      },
+      "pathMappings": [
+        {
+          "localRoot": "/Users/ramkumarng/Documents/personal/projects/resourceOptima/src",
+          "remoteRoot": "/Users/ramkumarng/Documents/personal/projects/resourceOptima/src"
+        }
+      ],
+      "justMyCode": true
+    },
+    {
+      "name": "Docker",
+      "python": "/Users/ramkumarng/Documents/personal/projects/resourceOptima/venv/bin/python3",
+      "type": "python",
+      "request": "launch",
+      "program": "/Users/ramkumarng/Documents/personal/projects/resourceOptima/src/manage.py",
+      "console": "internalConsole",
+      "args": ["runserver"],
+      "django": true,
+      "justMyCode": true,
+    }
+  ]
+}
