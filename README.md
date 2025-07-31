@@ -22,32 +22,6 @@
 
 ---
 
-## 🗂️ Project Structure
-
-```
-
-.
-├── docker/                      # Docker setup
-│   └── scripts/                 # Startup scripts
-├── docker-compose.yaml         # Docker orchestration
-├── scripts/                    # Initialization scripts for sample data
-├── src/
-│   ├── api/                    # Core API app
-│   │   ├── common/             # Shared models/utilities
-│   │   └── v1/                 # Versioned API (v1)
-│   │       ├── manager/        # Manager-specific APIs
-│   │       ├── project/        # Project-specific APIs
-│   │       ├── resource/       # Resource-specific APIs
-│   │       └── urls.py         # API routing
-│   ├── app/                    # Django settings and WSGI entrypoints
-│   ├── cmds/                   # Custom management commands
-│   ├── manage.py               # Django CLI entrypoint
-│   └── requirements.txt        # Python dependencies
-
-````
-
----
-
 ## ⚙️ Setup Instructions
 
 ### 1️⃣ Prerequisites
