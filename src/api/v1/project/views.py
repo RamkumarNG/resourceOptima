@@ -11,10 +11,10 @@ from rest_framework.response import Response
 
 from .models import Project, TaskAssignment
 from api.v1.resource.models import Resource
-from api.v1.manager.models import Manager
 
 from .serialiazers import ProjectSerializer
 from api.common.decorators import handle_exceptions
+from api.common.serializers import EmptySerializer
 
 logger = logging.getLogger(__name__)
 
@@ -29,6 +29,12 @@ class ProjectViewSet(ModelViewSet):
             qs = qs.prefetch_related('tasks__assignment', 'tasks__assignment__resource')
 
         return qs
+
+    def get_serializer_class(self):
+        if self.action == 'assign_tasks':
+            return EmptySerializer
+        return ProjectSerializer
+
     
     @handle_exceptions  
     def list(self, request, *args, **kwargs):
@@ -129,6 +135,7 @@ class ProjectViewSet(ModelViewSet):
         
         assigned_resource_ids = set(TaskAssignment.objects.values_list('availability__id', flat=True))
         fin = {}
+        assigned_task = 0
         for _task in tasks_obj:
             task_skills = _task['task_skills']
             task_skill_count = len(task_skills)
@@ -170,6 +177,7 @@ class ProjectViewSet(ModelViewSet):
                     break
             
             if selected_resource and availability:
+                assigned_task += 1
                 with transaction.atomic():
                     TaskAssignment.objects.create(
                         task_id = _task['id'],
@@ -196,7 +204,18 @@ class ProjectViewSet(ModelViewSet):
                     "is_available": availability.is_available
                 } if availability else None
             }
+            
+        if assigned_task == len(tasks_obj):
+            assigned_status = 'completed'
+        elif assigned_task > 1:
+            assigned_status = 'partial assigned'
+        else:
+            assigned_status = project_obj.assigned_resource_status
 
+        with transaction.atomic():
+            project_obj.assigned_resource_status = assigned_status
+            project_obj.save()
+            
         return Response({
             "status": status.HTTP_200_OK,
             "data": {

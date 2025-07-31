@@ -12,13 +12,13 @@ class Project(TimeStampedModel):
     name = models.CharField(max_length=20)
     description = models.TextField(blank=True, null=True)
     manager = models.ForeignKey(Manager, on_delete=models.SET_NULL, null=True, related_name='projects')
-    
+    assigned_resource_status = models.CharField(max_length=20, choices=[('completed', 'Completed'), ('partial assigned', 'Partial Assigned'), ('not assigned', 'Not Assigned')])
+
     def __str__(self):
         return self.name
     
     class Meta:
         db_table = 'project'
-    
 
 class Task(TimeStampedModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

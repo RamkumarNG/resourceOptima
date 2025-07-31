@@ -13,6 +13,7 @@ from django.db import transaction
 managers = [
     {"name": "Manager Xavi", "email": "xavi@example.com"},
     {"name": "Manager Eden", "email": "eden@example.com"},
+    {"name": "Manager Zidane", "email": "zidane@example.com"},
 ]
 
 with transaction.atomic():

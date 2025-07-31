@@ -7,6 +7,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
 django.setup()
 
 from api.v1.project.models import Project
+from api.v1.manager.models import Manager
 from django.db import transaction
 
 projects = [
@@ -30,6 +31,7 @@ projects = [
             "A real-time medication tracking system that ensures the right medication is delivered to the right patient "
             "at the right time using barcode scanning and AI-based schedule optimization."
         ),
+        "manager": "zidane@example.com",
     },
 ]
 
@@ -39,4 +41,5 @@ with transaction.atomic():
         Project.objects.get_or_create(
             name=_project['name'],
             description=_project['description'],
+            manager = Manager.objects.get(email=_project.get("manager")) if _project.get("manager") else None
         )

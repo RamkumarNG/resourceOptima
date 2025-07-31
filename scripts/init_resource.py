@@ -70,6 +70,24 @@ resources = [
             {"available_from": date(2024, 7, 22), "available_to": date(2024, 8, 2)}
         ]
     },
+    {
+        "name": "Ronald Araujo",
+        "email": "araujo@example.com",
+        "skills": ["Python", "Cryptography"],
+        "manager": "zidane@example.com",
+        "availability": [
+            {"available_from": date(2024, 7, 15), "available_to": date(2024, 7, 23)}
+        ]
+    },
+    {
+        "name": "Raphinha",
+        "email": "raphinha@example.com",
+        "skills": ["Django", "OAuth2"],
+        "manager": "zidane@example.com",
+        "availability": [
+            {"available_from": date(2024, 7, 24), "available_to": date(2024, 7, 31)}
+        ]
+    }
 ]
 
 with transaction.atomic():
