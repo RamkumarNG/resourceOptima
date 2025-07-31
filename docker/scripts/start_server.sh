@@ -2,6 +2,8 @@
 
 echo "🚀 Starting Django application with Gunicorn..."
 
+cd /app/src
+
 # Run migrations
 python manage.py migrate
 

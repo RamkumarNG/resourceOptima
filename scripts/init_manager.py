@@ -4,6 +4,7 @@ import django
 
 sys.path.append('/app/src')
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
+
 django.setup()
 
 from api.v1.manager.models import Manager
